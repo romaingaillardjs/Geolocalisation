@@ -118,6 +118,8 @@ function initMap() {
       infoWindow.setContent('Location found.');
       map.setCenter(pos);
 
+      socket.emit('new user position', { pos: pos });
+
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
