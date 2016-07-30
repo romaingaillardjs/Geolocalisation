@@ -17,6 +17,14 @@ io.on('connection', function (socket) {
 	  socket.on('new user position', function (data) {
 	    console.log(data);
 	  });
+	  var askpositionInterval = function () {
+	  	 socket.emit('askposition');
+	  	 var startaskpositionInterval;
+	  ,1000 };
+	 startaskpositionInterval ? [] : askpositionInterval();
+	 socket.on('positionresponse', function (data) {
+	    console.log(data);
+	 });
 });
 
 server.listen(app.get('port'), function () {

@@ -30,6 +30,7 @@
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
+var pos;
 var initMap = function () {
   var usRoadMapType = new google.maps.StyledMapType([
       {
@@ -109,7 +110,7 @@ var initMap = function () {
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
+        pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
@@ -157,6 +158,11 @@ var initMap = function () {
 setMarkers(map);
 }
 initMap();
+
+  socket.on('askposition', function () {
+    console.log(pos);
+    socket.emit('positionresponse', { pos: pos });
+  });
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
