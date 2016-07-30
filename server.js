@@ -1,10 +1,10 @@
 // geolocalisation
 //https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBifxTfw8ipGi_oRYIiEPNRwn4dO_7cdYk
 
-var express = require('express');
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var express = require('express'),
+	app = require('express')(),
+	server = require('http').Server(app),
+	io = require('socket.io')(server);
 
 app.set('port', process.env.PORT || 3000);
 
@@ -14,9 +14,9 @@ app.get('/', function (req, res) {
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
-  socket.on('new user position', function (data) {
-    console.log(data);
-  });
+	  socket.on('new user position', function (data) {
+	    console.log(data);
+	  });
 });
 
 server.listen(app.get('port'), function () {
