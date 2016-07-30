@@ -8,6 +8,8 @@ app.get('/', function (req, res) {
   res.sendfile('./geolocalisation.html');
 });
 
-app.listen(3000, function () {
+app.set('port', process.env.PORT || 3000);
+
+app.listen(app.get('port'), function () {
   console.log('Example app listening on port 3000!');
 });
