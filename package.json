@@ -1,0 +1,16 @@
+{
+  "name": "dark-snow",
+  "version": "1.0.0",
+  "description": "My app Geolocalisation",
+  "scripts": {
+    "deploy": "npm test && git push heroku master",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "*"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "6.1.0"
+  }
+}
