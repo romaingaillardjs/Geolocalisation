@@ -2,14 +2,23 @@
 //https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBifxTfw8ipGi_oRYIiEPNRwn4dO_7cdYk
 
 var express = require('express');
-var app = express();
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+app.set('port', process.env.PORT || 3000);
 
 app.get('/', function (req, res) {
   res.sendfile('./geolocalisation.html');
 });
 
-app.set('port', process.env.PORT || 3000);
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
 
-app.listen(app.get('port'), function () {
+server.listen(app.get('port'), function () {
   console.log('Example app listening on port 3000!');
 });
