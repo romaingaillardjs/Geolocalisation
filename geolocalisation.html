@@ -30,7 +30,7 @@
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
-function initMap() {
+var initMap = function () {
   var usRoadMapType = new google.maps.StyledMapType([
       {
         featureType: 'road.highway',
@@ -137,16 +137,11 @@ function initMap() {
 
   }
 
-  setMarkers(map);
-}
-
-// Data for the markers consisting of a name, a LatLng and a zIndex for the
-// order in which these markers should display on top of each other.
-var beaches = [
+  var beaches = [
   ['Bondi Beach', -33.890542, 151.274856, 4]
 ];
 
-function setMarkers(map) {
+var setMarkers = function(map) {
 
   for (var i = 0; i < beaches.length; i++) {
     var beach = beaches[i];
@@ -158,6 +153,13 @@ function setMarkers(map) {
     });
   }
 }
+
+  setMarkers(map);
+}();
+
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
+// order in which these markers should display on top of each other.
+
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxTfw8ipGi_oRYIiEPNRwn4dO_7cdYk&signed_in=true&callback=initMap"
